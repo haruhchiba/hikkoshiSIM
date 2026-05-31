@@ -438,6 +438,49 @@ body {
   color: var(--ink);
 }
 
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item:first-of-type {
+  margin-top: 6px;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 13px 26px 13px 2px;
+  position: relative;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "＋";
+  position: absolute;
+  right: 4px;
+  top: 13px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.faq-item[open] summary::after {
+  content: "－";
+}
+
+.faq-item p {
+  margin: 0 0 14px;
+  padding-right: 2px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
 .action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
