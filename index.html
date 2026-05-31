@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="家賃や敷金・礼金から、賃貸の引っ越し初期費用をすぐに計算できるスマホ向け無料シミュレーターです。初期費用が家賃の何ヶ月分になるか、引っ越し代込みの総額もわかります。"
+    />
+    <title>引っ越し初期費用シミュレーター｜敷金礼金から総額をかんたん計算</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">MOVING COST SIMULATOR</p>
+        <h1>引っ越し初期費用<br class="mobile-break" />シミュレーター</h1>
+        <p class="lead">
+          家賃と敷金・礼金などを入れるだけで、賃貸の初期費用と引っ越し代込みの総額を計算します。家賃の何ヶ月分かもひと目でわかります。
+        </p>
+      </header>
+
+      <section class="card setup-card" aria-labelledby="setupTitle">
+        <div class="section-heading">
+          <p class="step-label">STEP 1</p>
+          <h2 id="setupTitle">物件の条件を入力する</h2>
+        </div>
+
+        <form id="costForm" novalidate>
+          <div class="field">
+            <label class="field-label" for="rent">
+              家賃（月額）
+              <span class="required-badge">必須</span>
+            </label>
+            <p class="field-note">物件の1ヶ月あたりの家賃を入力してください。</p>
+            <div class="input-money">
+              <input
+                id="rent"
+                name="rent"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1000"
+                placeholder="例：70000"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="mgmt">管理費・共益費（月額）</label>
+            <p class="field-note">毎月の管理費・共益費です。前家賃にも含めて計算します。空欄でもかまいません。</p>
+            <div class="input-money">
+              <input
+                id="mgmt"
+                name="mgmt"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="500"
+                placeholder="例：5000"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <p class="group-label">敷金・礼金など（家賃の「◯ヶ月分」で入力）</p>
+
+          <div class="field compact-field">
+            <label class="field-label" for="depositMonths">敷金</label>
+            <div class="input-money">
+              <input
+                id="depositMonths"
+                name="depositMonths"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.5"
+                placeholder="例：1"
+                autocomplete="off"
+              />
+              <span class="input-unit">ヶ月分</span>
+            </div>
+          </div>
+
+          <div class="field compact-field">
+            <label class="field-label" for="reikinMonths">礼金</label>
+            <div class="input-money">
+              <input
+                id="reikinMonths"
+                name="reikinMonths"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.5"
+                placeholder="例：1"
+                autocomplete="off"
+              />
+              <span class="input-unit">ヶ月分</span>
+            </div>
+          </div>
+
+          <div class="field compact-field">
+            <label class="field-label" for="brokerMonths">仲介手数料</label>
+            <p class="field-note">家賃の1ヶ月分が一般的です。</p>
+            <div class="input-money">
+              <input
+                id="brokerMonths"
+                name="brokerMonths"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.5"
+                placeholder="例：1"
+                autocomplete="off"
+              />
+              <span class="input-unit">ヶ月分</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="advanceMonths">前家賃</label>
+            <p class="field-note">入居初月分の家賃です。管理費・共益費も含めて計算します。</p>
+            <div class="input-money">
+              <input
+                id="advanceMonths"
+                name="advanceMonths"
+                type="number"
+                inputmode="decimal"
+                min="0"
+                step="0.5"
+                placeholder="例：1"
+                autocomplete="off"
+              />
+              <span class="input-unit">ヶ月分</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="dailyRent">日割り家賃</label>
+            <p class="field-note">入居日が月の途中のときにかかる、日割り分の家賃です。空欄でもかまいません。</p>
+            <div class="input-money">
+              <input
+                id="dailyRent"
+                name="dailyRent"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1000"
+                placeholder="例：35000"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fireInsurance">火災保険料</label>
+            <p class="field-note">2年契約で15,000円〜20,000円程度が目安です。</p>
+            <div class="input-money">
+              <input
+                id="fireInsurance"
+                name="fireInsurance"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1000"
+                placeholder="例：15000"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="keyExchange">鍵交換費</label>
+            <p class="field-note">前の入居者から鍵を交換する費用です。10,000円〜20,000円程度が目安です。</p>
+            <div class="input-money">
+              <input
+                id="keyExchange"
+                name="keyExchange"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1000"
+                placeholder="例：16500"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="guarantor">保証会社費用</label>
+            <p class="field-note">家賃保証会社を使う場合の初回費用です。家賃の50%〜100%が目安です。空欄でもかまいません。</p>
+            <div class="input-money">
+              <input
+                id="guarantor"
+                name="guarantor"
+                type="number"
+                inputmode="numeric"
+                min="0"
+                step="1000"
+                placeholder="例：35000"
+                autocomplete="off"
+              />
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+
+          <details id="advancedConditions" class="advanced-conditions">
+            <summary>くわしい条件を追加する</summary>
+            <div class="advanced-content">
+              <div class="field compact-field">
+                <label class="field-label" for="moving">引っ越し代</label>
+                <p class="field-note">引っ越し業者にかかる費用の見込みです。総額に含めて計算します。</p>
+                <div class="input-money">
+                  <input
+                    id="moving"
+                    name="moving"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
+                    step="1000"
+                    placeholder="例：50000"
+                    autocomplete="off"
+                  />
+                  <span class="input-unit">円</span>
+                </div>
+              </div>
+
+              <div class="field compact-field">
+                <label class="field-label" for="furniture">家具・家電代</label>
+                <p class="field-note">新生活でそろえる家具・家電の見込みです。総額に含めて計算します。</p>
+                <div class="input-money">
+                  <input
+                    id="furniture"
+                    name="furniture"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
+                    step="1000"
+                    placeholder="例：100000"
+                    autocomplete="off"
+                  />
+                  <span class="input-unit">円</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <p id="formError" class="error-message" role="alert" aria-live="assertive"></p>
+          <button class="button button-primary generate-button" type="submit">
+            初期費用を計算する
+          </button>
+        </form>
+      </section>
+
+      <section
+        id="resultSection"
+        class="result-section"
+        aria-labelledby="resultTitle"
+        hidden
+      >
+        <div class="result-intro">
+          <p class="step-label">STEP 2</p>
+          <h2 id="resultTitle">引っ越し初期費用の目安</h2>
+          <p id="rentSummary" class="condition-summary"></p>
+        </div>
+
+        <section class="card guide-card" aria-labelledby="guideTitle">
+          <p class="mini-label">TOTAL</p>
+          <h3 id="guideTitle">かかるお金の合計</h3>
+          <div id="totalGrid" class="total-grid"></div>
+          <p id="monthsNote" class="ratio-note"></p>
+          <p class="card-note">
+            賃貸契約の初期費用は、家賃の4〜6ヶ月分になることが多いとされています。敷金・礼金が0の物件では安く、礼金や保証会社費が重なると高くなります。
+          </p>
+        </section>
+
+        <section class="card breakdown-card" aria-labelledby="breakdownTitle">
+          <p class="mini-label">BREAKDOWN</p>
+          <h3 id="breakdownTitle">初期費用の内訳</h3>
+          <ul id="breakdownList" class="breakdown-list"></ul>
+        </section>
+
+        <section class="card action-card" aria-labelledby="actionTitle">
+          <h3 id="actionTitle">結果を使う</h3>
+          <div class="action-grid">
+            <button id="copyButton" class="button button-primary" type="button">
+              コピー
+            </button>
+            <a
+              id="lineShareButton"
+              class="button button-line"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LINE共有
+            </a>
+            <button id="resetButton" class="button button-secondary" type="button">
+              入力をリセット
+            </button>
+          </div>
+          <p id="actionMessage" class="success-message" aria-live="polite"></p>
+        </section>
+
+        <p class="disclaimer">
+          ※ この結果は入力した条件にもとづく目安です。実際の初期費用は物件や不動産会社、契約内容によって異なります。正確な金額は不動産会社が出す見積書でご確認ください。
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
